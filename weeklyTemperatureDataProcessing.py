@@ -19,7 +19,6 @@
 
 import operator
 
-
 # Only one function (because I couldn't get this to work in multiple functions anymore), this creates a dictionary, then fills it out with user input.
 # After user input is gathered, it gives the hottest, then the coldest day.
 # main() then calculates the average temperature for the week and prints that, then the function prints a list of days higher than the average temperature.
@@ -39,7 +38,12 @@ def main():
         if x > average:
             keyValue = {i for i in weeklyTemps if weeklyTemps[i]==x}
             daysAboveAverage.append(keyValue)
-    print(f'The average temperature this week was {average}.')
+            
+    # Quick operator to cap temp decimals i.e. 24.32142313 => 24.3
+    average = round(average, 1)
+    
+    print(f'The average temperature this week was {average}°.') # Added ° symbol
+    
     print('The following days had a temperature above average:')
     # The spirit is still there, but for the life of me, I couldn't figure out how to make this print something at least a little normal-looking.
     # Though, in my defence, it still prints those days and there was no requirement on how THAT was supposed to look.
@@ -47,7 +51,13 @@ def main():
     index = 0
     while index < len(daysAboveAverage):
         y = daysAboveAverage[index]
-        print(y)
+        print(list(dict.fromkeys(y))[0]) # Now outputs just the name of the day
         index += 1
+        
+        
 # runs the program.
-main()
+# main()
+
+# This is just a bit of a better way to run main
+if __name__ == "__main__":
+    main()
